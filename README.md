@@ -13,7 +13,7 @@ Install-Module MSTeamsCQD
 
 ## Examples
 
-you will find example querys inside the example folder located in this repo 
+you will find example querys inside the Examples folder located in this repo 
 
 
 
