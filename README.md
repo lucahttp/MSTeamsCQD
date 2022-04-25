@@ -23,5 +23,8 @@ you will find example querys inside the Examples folder located in this repo
   - you will need to login every one hour
 
 ## Sources
+
+### CQDPowerShell
+https://www.powershellgallery.com/packages/CQDPowerShell/2.0.1
 ### Github Publish to PowershellGallery Action
 https://www.codewrecks.com/post/general/powershell-gallery-publish/
