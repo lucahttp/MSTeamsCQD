@@ -20,7 +20,7 @@
     RootModule = 'MSTeamsCQD'
     
     # Version number of this module.
-    ModuleVersion = '1.0.0'
+    ModuleVersion = '1.1.0'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -115,7 +115,7 @@
             # IconUri = ''
     
             # ReleaseNotes of this module
-            ReleaseNotes = '1.0.0 now supports CQD UNION Query and for Custom Filters. See help for more information.'
+            ReleaseNotes = '1.1.0 now supports CQD large Query and and headless login.'
     
         } # End of PSData hashtable
     

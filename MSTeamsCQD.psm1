@@ -105,7 +105,7 @@ function Get-CQDToken ([string]$client_id) {
   $url = "https://login.microsoftonline.com/common/oauth2/authorize?response_type=token&redirect_uri=" +
   [System.Web.HttpUtility]::UrlEncode($redirectUrl) +
   "&client_id=$client_id" +
-  "&prompt=login" + "&nonce=$nonce" + "&resource=" + [System.Web.HttpUtility]::UrlEncode($WebResource)
+  "&prompt=none" + "&nonce=$nonce" + "&resource=" + [System.Web.HttpUtility]::UrlEncode($WebResource)
 
 
   Add-Type -AssemblyName System.Windows.Forms
@@ -953,7 +953,8 @@ function Get-CQDData {
   ,
   $StartMeasures
   $MeasureRowArray
-  ]
+  ],
+  LimitResultRowsCount:200000
   }
 "@
 
