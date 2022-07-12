@@ -10,6 +10,11 @@ Requires Report Reader role in Office 365 at a minimum to authenticate.
 Install-Module MSTeamsCQD
 ```
 
+or
+
+```PowerShell
+Install-Module MSTeamsCQD -Scope CurrentUser -Force -RequiredVersion 1.2.0
+```
 
 ## Examples
 
