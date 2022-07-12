@@ -20,7 +20,7 @@
     RootModule        = 'MSTeamsCQD'
     
     # Version number of this module.
-    ModuleVersion     = '1.2.1'
+    ModuleVersion     = '1.2.2'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -131,7 +131,7 @@ https://github.com/lukaneco/MSTeamsCQD
     
             # ReleaseNotes of this module
             ReleaseNotes = @'
- **1.2.1** (The project - MSTeamsCQD contains changes till this release)
+ **1.2.2** (The project - MSTeamsCQD contains changes till this release)
 - Releases Get-CQDUserReport cmdlet.
 - Releases Get-CQDConferenceReport cmdlet.
 - Releases Get-CQDSubnetsReport cmdlet.
