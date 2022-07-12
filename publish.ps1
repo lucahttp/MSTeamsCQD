@@ -1,7 +1,7 @@
 # https://evotec.xyz/powershell-single-psm1-file-versus-multi-file-modules/
 param (
-    [string] $version,
-    [string] $preReleaseTag,
+    #[string] $version,
+    #[string] $preReleaseTag,
     [string] $apiKey,
     [string] $ModuleName
 )
@@ -36,10 +36,11 @@ foreach ($FilePath in $ModulePSM) {
 
 # Now replace version in psd1
 
-$fileContent = Get-Content "$scriptPath\$ModuleName.psd1.source"
-$fileContent = $fileContent -replace '{{version}}', $version
-$fileContent = $fileContent -replace '{{preReleaseTag}}', $preReleaseTag 
-Set-Content "$scriptPath\$ModuleName\$ModuleName.psd1" -Value $fileContent -Force
+# Cannot find a tool in the manifest file that has a command named 'dotnet-gitversion'.
+# $fileContent = Get-Content "$scriptPath\$ModuleName.psd1.source"
+# $fileContent = $fileContent -replace '{{version}}', $version
+# $fileContent = $fileContent -replace '{{preReleaseTag}}', $preReleaseTag 
+# Set-Content "$scriptPath\$ModuleName\$ModuleName.psd1" -Value $fileContent -Force
 
 Publish-Module `
     -Path $scriptPath\$ModuleName `
