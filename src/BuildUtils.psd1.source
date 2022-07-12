@@ -1,0 +1,13 @@
+@{
+	RootModule = 'BuildUtils.psm1'
+	ModuleVersion = '{{version}}'
+	GUID = 'a6f44f17-8d42-4031-85e3-63a9146b76c0'
+	Author = 'Microsoft'
+	Description = 'Allows Microsoft Teams Admins to connect to the Call Quality Dashboard data API for Teams Online through PowerShell. Requires Report Reader role in Office 365 at a minimum to authenticate.'
+	CompanyName = 'Microsoft'
+	Copyright = '(c) 2020 Microsoft Corporation. All rights reserved.'
+	PrivateData = @{
+    PSData = @{
+      Prerelease = '{{preReleaseTag}}'
+    }
+  }
