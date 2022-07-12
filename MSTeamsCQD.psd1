@@ -20,7 +20,7 @@
     RootModule        = 'MSTeamsCQD'
     
     # Version number of this module.
-    ModuleVersion     = '1.2.2'
+    ModuleVersion     = '1.2.3'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -53,7 +53,7 @@ Allows Tenant Admins to connect to the Call Quality Dashboard data API for Teams
  - if you are already authenticated, you can use the existing login and avoid authenticating with MFA again 
 
 - The modify the module and colaborate please go to the Github repository in the below link:
-https://github.com/lukaneco/MSTeamsCQD
+https://github.com/lucahttp/MSTeamsCQD/MSTeamsCQD
 '@
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '3.0'
@@ -124,14 +124,14 @@ https://github.com/lukaneco/MSTeamsCQD
             # LicenseUri = ''
     
             # A URL to the main website for this project.
-            ProjectUri   = 'https://github.com/lukaneco/MSTeamsCQD'
+            ProjectUri   = 'https://github.com/lucahttp/MSTeamsCQD/MSTeamsCQD'
             
             # A URL to an icon representing this module.
             # IconUri = ''
     
             # ReleaseNotes of this module
             ReleaseNotes = @'
- **1.2.2** (The project - MSTeamsCQD contains changes till this release)
+ **1.2.3** (The project - MSTeamsCQD contains changes till this release)
 - Releases Get-CQDUserReport cmdlet.
 - Releases Get-CQDConferenceReport cmdlet.
 - Releases Get-CQDSubnetsReport cmdlet.

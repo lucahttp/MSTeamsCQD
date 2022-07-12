@@ -114,7 +114,7 @@
             # IconUri = ''
     
             # ReleaseNotes of this module
-            ReleaseNotes = '1.2.2 now adds CQD Query templates and new commands like Get-CQDUserReport,Get-CQDConferenceReport and fix the Get-CQDSubnetsReport command.'
+            ReleaseNotes = '1.2.3 now adds CQD Query templates and new commands like Get-CQDUserReport,Get-CQDConferenceReport and fix the Get-CQDSubnetsReport command.'
     
         } # End of PSData hashtable
     
