@@ -20,7 +20,7 @@
     RootModule = 'MSTeamsCQD'
     
     # Version number of this module.
-    ModuleVersion = '1.1.0'
+    ModuleVersion = '1.2.0'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -77,7 +77,7 @@
     # NestedModules = @()
     
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport = 'Get-CQDData','Get-CQDDimensions','Get-CQDMeasures','Get-CQDMeasures','Connect-CqdOnline'
+    FunctionsToExport = 'Get-CQDData','Get-CQDDimensions','Get-CQDMeasures','Get-CQDMeasures','Connect-CqdOnline','Get-CQDUserReport','Get-CQDConferenceReport','Get-CQDSubnetsReport'
     
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     CmdletsToExport = '*'
@@ -115,7 +115,7 @@
             # IconUri = ''
     
             # ReleaseNotes of this module
-            ReleaseNotes = '1.1.0 now supports CQD large Query and and headless login.'
+            ReleaseNotes = '1.2.0 now adds CQD Query templates and new commands like Get-CQDUserReport,Get-CQDConferenceReport and Get-CQDSubnetsReport.'
     
         } # End of PSData hashtable
     

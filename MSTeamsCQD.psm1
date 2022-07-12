@@ -1042,4 +1042,248 @@ function Get-CQDData {
   }
 
 }
+
 Export-ModuleMember -Function Get-CQDData
+
+
+
+
+$ListOfDimensionsRaw = "
+AllStreams.First UserType
+AllStreams.Second UserType
+AllStreams.Meeting Id
+AllStreams.Conference Id
+AllStreams.Organizer UPN
+AllStreams.First UPN
+AllStreams.Second UPN
+AllStreams.Stream Direction
+AllStreams.First Subnet
+AllStreams.Second Subnet
+AllStreams.Media Type
+AllStreams.Start Time
+AllStreams.End Time
+AllStreams.Date
+
+AllStreams.Duration 5 seconds or less
+AllStreams.Duration 60 seconds or more
+AllStreams.Duration (Minutes)
+AllStreams.Duration (Seconds)
+
+
+
+AllStreams.Used Dns Resolve Cache
+AllStreams.Session Type
+AllStreams.Media Failure Type
+AllStreams.Call Classification
+AllStreams.Classification Reason
+
+AllStreams.First User Agent Category
+AllStreams.Second User Agent Category
+AllStreams.First User Agent
+AllStreams.Second User Agent
+AllStreams.Transport
+AllStreams.First Connectivity Ice
+AllStreams.Second Connectivity Ice
+AllStreams.First IP Address
+AllStreams.Second IP Address
+AllStreams.First Link Speed
+AllStreams.Second Link Speed
+AllStreams.First Port
+AllStreams.Second Port
+AllStreams.First Reflexive Local IP
+AllStreams.Second Reflexive Local IP
+AllStreams.First Relay IP
+AllStreams.Second Relay IP
+AllStreams.First Relay Port
+AllStreams.Second Relay Port
+AllStreams.First VPN
+AllStreams.Second VPN
+AllStreams.Applied Bandwidth Source
+AllStreams.Bandwidth Est
+AllStreams.Mediation Server Bypass Flag
+AllStreams.First Cdr Connectivity Type
+AllStreams.Second Cdr Connectivity Type
+AllStreams.First Local Media Relay Address
+AllStreams.Second Local Media Relay Address
+AllStreams.First Remote Media Relay Address
+AllStreams.Second Remote Media Relay Address
+AllStreams.First Local Address Type
+AllStreams.Second Local Address Type
+AllStreams.First Remote Address Type
+AllStreams.Second Remote Address Type
+AllStreams.First Transport Protocol
+AllStreams.Second Transport Protocol
+SecondTenantDataEndpoint.First Reflexive Local IP Network
+SecondTenantDataEndpoint.Second Reflexive Local IP Network
+
+
+
+AllStreams.First PSTN Country Region
+AllStreams.Second PSTN Country Region
+AllStreams.PSTN Trunk FQDN
+AllStreams.PSTN Carrier Name
+AllStreams.PSTN Call Type
+AllStreams.PSTN Connectivity Type
+AllStreams.PSTN Final SIP Code Phrase
+AllStreams.PSTN Call End Sub Reason
+AllStreams.PSTN Event Type
+AllStreams.PSTN Event Info Time
+AllStreams.PSTN MP Location
+AllStreams.PSTN Call End Reason
+
+AllStreams.First Phone Number
+AllStreams.Second Phone Number
+
+AllStreams.Call Queue Identity
+AllStreams.Auto Attendant Identity
+AllStreams.Scheduling Source App Id
+"
+$ListOfDimensions = $ListOfDimensionsRaw.Split([Environment]::NewLine, [StringSplitOptions]::RemoveEmptyEntries)
+
+$ListOfMeasuresRaw = "
+Measures.Total Call Count
+
+
+Measures.Avg Video Packet Loss Rate
+Measures.Avg Packet Loss Rate
+Measures.Avg Packet Loss Rate Max
+
+Measures.Avg Jitter
+Measures.Avg Jitter Max
+
+
+
+Measures.Avg Round Trip
+Measures.Avg Round Trip Max
+Measures.Avg Packet Utilization
+Measures.Avg Network Jitter
+Measures.Avg Network Jitter Max
+Measures.Avg Network Jitter Min
+Measures.Avg Jitter Buffer Size
+Measures.Avg Jitter Buffer Size Max
+Measures.Avg Jitter Buffer Size Min
+Measures.Avg Relative OneWay
+Measures.Avg Relative OneWay Max
+Measures.Avg Relative OneWay Gap Occurrences
+Measures.Avg Relative OneWay Gap Density
+Measures.Avg Relative OneWay Gap Duration
+
+Measures.Avg Call Duration
+Measures.Total Audio Stream Duration (Minutes)
+
+"
+$ListOfMeasures = $ListOfMeasuresRaw.Split([Environment]::NewLine, [StringSplitOptions]::RemoveEmptyEntries)
+
+
+
+
+function Get-CQDConferenceReport {
+  [CmdletBinding()]
+  param(
+    [Parameter(Mandatory = $true, Position = 1)]
+    [string]$ConferenceID = $null
+  )
+
+  $CustomFilter = @()
+  $F1 = New-Object pscustomobject
+  $F1 | Add-Member -Type NoteProperty -Name FName -Value "AllStreams.Conference Id"
+  $F1 | Add-Member -Type NoteProperty -Name FValue -Value $ConferenceID
+  $F1 | Add-Member -Type NoteProperty -Name Op -Value 0
+  $CustomFilter += $F1
+
+
+  $reportfilename = "CQD_Report_Conference_" + $ConferenceID + "_RUNDATE_" + (Get-Date -Format 'MM_dd_yyyy__HH_mm_ss') + ".csv"
+  $cqdDataInfo = Get-CQDData -Dimensions $ListOfDimensions -Measures $ListOfMeasures -ShowQuery $True -CustomFilter $CustomFilter -OutputType datatable 
+  $cqdDataInfo | Out-GridView
+  Write-Output "Writing report to the file " $reportfilename ""
+  $cqdDataInfo | Export-Csv -Path $reportfilename -NoTypeInformation
+
+}
+Export-ModuleMember -Function Get-CQDConferenceReport
+
+
+function Get-CQDUserReport {
+  [CmdletBinding()]
+  param(
+    [Parameter(Mandatory = $true, Position = 1)]
+    [string]$UPN = $null,
+    [Parameter(Mandatory = $false, Position = 1)]
+    [int]$days = 28
+  )
+
+  $FUnionGroup = "user"
+  $CustomFilter = @()
+
+  $F1 = New-Object pscustomobject
+  $F1 | Add-Member -Type NoteProperty -Name FName -Value "AllStreams.First UPN"
+  $F1 | Add-Member -Type NoteProperty -Name FValue -Value $UPN
+  $F1 | Add-Member -Type NoteProperty -Name Op -Value 0
+  $F1 | Add-Member -Type NoteProperty -Name FUnionGroup -Value $FUnionGroup
+  $CustomFilter += $F1
+
+
+  $F2 = New-Object pscustomobject
+  $F2 | Add-Member -Type NoteProperty -Name FName -Value "AllStreams.Second UPN"
+  $F2 | Add-Member -Type NoteProperty -Name FValue -Value $UPN
+  $F2 | Add-Member -Type NoteProperty -Name Op -Value 0
+  $F2 | Add-Member -Type NoteProperty -Name FUnionGroup -Value $FUnionGroup
+  $CustomFilter += $F2
+
+
+  $Offsetdays = 0
+  $StartDate = (Get-Date).AddDays(-$Offsetdays - $days)
+  $EndDate = (Get-Date).AddDays(-$Offsetdays)
+  $StartDateString = Get-Date $StartDate -Format 'MM/dd/yyyy'
+  $EndDateString = Get-Date $EndDate -Format 'MM/dd/yyyy'
+
+
+  $reportfilename = "CQD_Report_User_" + $UPN + "_" + "EndDate_" + (Get-Date $EndDate -Format 'MM_dd_yyyy') + "_StartDate_" + (Get-Date $StartDate -Format 'MM_dd_yyyy') + "_RUNDATE_" + (Get-Date -Format 'MM_dd_yyyy__HH_mm_ss') + ".csv"
+  $cqdDataInfo = Get-CQDData -StartDate $StartDateString -EndDate $EndDateString -Dimensions $ListOfDimensions -Measures $ListOfMeasures -ShowQuery $True -CustomFilter $CustomFilter -OutputType datatable 
+  $cqdDataInfo | Out-GridView
+  $cqdDataInfo | Export-Csv -Path $reportfilename -NoTypeInformation
+
+}
+Export-ModuleMember -Function Get-CQDUserReport
+
+
+function Get-CQDSubnetsReport {
+  [CmdletBinding()]
+  param(
+    [Parameter(Mandatory = $true, Position = 3)]
+    [array]$Subnets = @("192.168.0.0","192.168.10.0"),
+    [Parameter(Mandatory = $false, Position = 1)]
+    [int]$days = 28
+  )
+  
+
+  $FUnionGroup = "subnets"
+  $CustomFilter = @()
+  # Adding filters
+  for ($i = 0; $i -le ($Subnets.length - 1); $i += 1) {
+    $Subnets[$i]
+    $F1 = New-Object pscustomobject
+    $F1 | Add-Member -Type NoteProperty -Name FName -Value "AllStreams.First Subnet"
+    $F1 | Add-Member -Type NoteProperty -Name FValue -Value $Subnets[$i]
+    $F1 | Add-Member -Type NoteProperty -Name Op -Value 0
+    $F1 | Add-Member -Type NoteProperty -Name FUnionGroup -Value $FUnionGroup
+    $CustomFilter += $F1
+    $F2 = New-Object pscustomobject
+    $F2 | Add-Member -Type NoteProperty -Name FName -Value "AllStreams.Second Subnet"
+    $F2 | Add-Member -Type NoteProperty -Name FValue -Value $Subnets[$i]
+    $F2 | Add-Member -Type NoteProperty -Name Op -Value 0
+    $F2 | Add-Member -Type NoteProperty -Name FUnionGroup -Value $FUnionGroup
+    $CustomFilter += $F2
+  }
+  
+  $Offsetdays = 0
+  $StartDate = (Get-Date).AddDays(-$Offsetdays - $days)
+  $EndDate = (Get-Date).AddDays(-$Offsetdays)
+  $StartDateString = Get-Date $StartDate -Format 'MM/dd/yyyy'
+  $EndDateString = Get-Date $EndDate -Format 'MM/dd/yyyy'
+
+  $reportfilename = "CQD_Report_Subnets" + "_" + "EndDate_" + (Get-Date $EndDate -Format 'MM_dd_yyyy') + "_StartDate_" + (Get-Date $StartDate -Format 'MM_dd_yyyy') + "_RUNDATE_" + (Get-Date -Format 'MM_dd_yyyy__HH_mm_ss') + ".csv"
+  $cqdDataInfo = Get-CQDData -StartDate $StartDateString -EndDate $EndDateString -Dimensions $ListOfDimensions -Measures $ListOfMeasures -ShowQuery $True -CustomFilter $CustomFilter -OutputType datatable 
+  $cqdDataInfo | Out-GridView
+  $cqdDataInfo | Export-Csv -Path $reportfilename -NoTypeInformation
+}
+Export-ModuleMember -Function Get-CQDSubnetReport
