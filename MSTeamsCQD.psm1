@@ -1249,9 +1249,9 @@ Export-ModuleMember -Function Get-CQDUserReport
 function Get-CQDSubnetsReport {
   [CmdletBinding()]
   param(
-    [Parameter(Mandatory = $true, Position = 3)]
-    [array]$Subnets = @("192.168.0.0","192.168.10.0"),
-    [Parameter(Mandatory = $false, Position = 1)]
+    [Parameter(Mandatory = $true)]
+    [array]$Subnets,
+    [Parameter(Mandatory = $false)]
     [int]$days = 28
   )
   
@@ -1286,4 +1286,4 @@ function Get-CQDSubnetsReport {
   $cqdDataInfo | Out-GridView
   $cqdDataInfo | Export-Csv -Path $reportfilename -NoTypeInformation
 }
-Export-ModuleMember -Function Get-CQDSubnetReport
+Export-ModuleMember -Function Get-CQDSubnetsReport

@@ -20,7 +20,7 @@
     RootModule = 'MSTeamsCQD'
     
     # Version number of this module.
-    ModuleVersion = '1.2.0'
+    ModuleVersion = '1.2.1'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -115,7 +115,7 @@
             # IconUri = ''
     
             # ReleaseNotes of this module
-            ReleaseNotes = '1.2.0 now adds CQD Query templates and new commands like Get-CQDUserReport,Get-CQDConferenceReport and Get-CQDSubnetsReport.'
+            ReleaseNotes = '1.2.1 now adds CQD Query templates and new commands like Get-CQDUserReport,Get-CQDConferenceReport and fix the Get-CQDSubnetsReport command.'
     
         } # End of PSData hashtable
     
