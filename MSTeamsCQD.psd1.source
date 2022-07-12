@@ -7,10 +7,8 @@
 #
 # Modified by: Luca Sain
 #
-# Modified on: 03/30/2022
+# Modified on: 07/12/2022
 #
-# Features added
-# added UNION filter to perform more advanced queries with AND/OR statements
 
 
 
@@ -38,7 +36,7 @@
     Copyright = '(c) 2020 Microsoft Corporation. All rights reserved.'
     
     # Description of the functionality provided by this module
-    Description = 'Allows Tenant Admins to connect to the Call Quality Dashboard data API for Teams and Skype for Business Online through PowerShell. Requires Report Reader role in Office 365 at a minimum to authenticate.'
+    Description = 'Allows Microsoft Teams Admins to connect to the Call Quality Dashboard data API for Teams Online through PowerShell. Requires Report Reader role in Office 365 at a minimum to authenticate.'
     
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '3.0'
@@ -77,7 +75,7 @@
     # NestedModules = @()
     
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport = 'Get-CQDData','Get-CQDDimensions','Get-CQDMeasures','Get-CQDMeasures','Connect-CqdOnline'
+    FunctionsToExport = 'Get-CQDData','Get-CQDDimensions','Get-CQDMeasures','Get-CQDMeasures','Connect-CqdOnline','Get-CQDUserReport','Get-CQDConferenceReport','Get-CQDSubnetsReport'
     
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     CmdletsToExport = '*'
@@ -104,7 +102,7 @@
             Prerelease = '{{preReleaseTag}}'
 
             # Tags applied to this module. These help with module discovery in online galleries.
-             Tags = @("CQD","CQDPowerShell","Teams","SFB")
+             Tags = @("CQD","CQDPowerShell","Teams")
     
             # A URL to the license for this module.
             # LicenseUri = ''
@@ -116,7 +114,7 @@
             # IconUri = ''
     
             # ReleaseNotes of this module
-            ReleaseNotes = '1.0.0 now supports CQD UNION Query and for Custom Filters. See help for more information.'
+            ReleaseNotes = '1.2.0 now adds CQD Query templates and new commands like Get-CQDUserReport,Get-CQDConferenceReport and Get-CQDSubnetsReport.'
     
         } # End of PSData hashtable
     

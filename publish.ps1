@@ -36,10 +36,10 @@ foreach ($FilePath in $ModulePSM) {
 
 # Now replace version in psd1
 
-$fileContent = Get-Content "$scriptPath\src\$ModuleName.psd1.source"
+$fileContent = Get-Content "$scriptPath\$ModuleName.psd1.source"
 $fileContent = $fileContent -replace '{{version}}', $version
 $fileContent = $fileContent -replace '{{preReleaseTag}}', $preReleaseTag 
-Set-Content "$scriptPath\$ModuleName\$ModuleName.psd1" -Value $fileContent  -Force
+Set-Content "$scriptPath\$ModuleName\$ModuleName.psd1" -Value $fileContent -Force
 
 Publish-Module `
     -Path $scriptPath\$ModuleName `
