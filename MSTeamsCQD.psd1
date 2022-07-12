@@ -53,7 +53,7 @@ Allows Tenant Admins to connect to the Call Quality Dashboard data API for Teams
  - if you are already authenticated, you can use the existing login and avoid authenticating with MFA again 
 
 - The modify the module and colaborate please go to the Github repository in the below link:
-https://github.com/lucahttp/MSTeamsCQD/MSTeamsCQD
+https://github.com/lucahttp/MSTeamsCQD
 '@
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '3.0'
@@ -124,7 +124,7 @@ https://github.com/lucahttp/MSTeamsCQD/MSTeamsCQD
             # LicenseUri = ''
     
             # A URL to the main website for this project.
-            ProjectUri   = 'https://github.com/lucahttp/MSTeamsCQD/MSTeamsCQD'
+            ProjectUri   = 'https://github.com/lucahttp/MSTeamsCQD'
             
             # A URL to an icon representing this module.
             # IconUri = ''
