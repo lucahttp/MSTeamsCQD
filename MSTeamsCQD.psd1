@@ -17,29 +17,44 @@
 @{
 
     # Script module or binary module file associated with this manifest.
-    RootModule = 'MSTeamsCQD'
+    RootModule        = 'MSTeamsCQD'
     
     # Version number of this module.
-    ModuleVersion = '1.2.1'
+    ModuleVersion     = '1.2.1'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
     
     # ID used to uniquely identify this module
-    GUID = '3ae0d986-a6a8-490f-b657-9d0ca0fa6296'
+    GUID              = '3ae0d986-a6a8-490f-b657-9d0ca0fa6296'
     
     # Author of this module
-    Author = 'Microsoft'
+    Author            = 'Microsoft'
     
     # Company or vendor of this module
-    CompanyName = 'Microsoft'
+    CompanyName       = 'Microsoft'
     
     # Copyright statement for this module
-    Copyright = '(c) 2020 Microsoft Corporation. All rights reserved.'
+    Copyright         = '(c) 2022 Microsoft Corporation. All rights reserved.'
     
     # Description of the functionality provided by this module
-    Description = 'Allows Tenant Admins to connect to the Call Quality Dashboard data API for Teams and Skype for Business Online through PowerShell. Requires Report Reader role in Office 365 at a minimum to authenticate.'
-    
+
+
+    Description       = @'
+MSTeamsCQD is a fork of CQDPowerShell Module
+
+Allows Tenant Admins to connect to the Call Quality Dashboard data API for Teams and Skype for Business Online through PowerShell. Requires Report Reader role in Office 365 at a minimum to authenticate.'
+
+ what we add to CQDPowerShell Module
+ - Connect-CqdOnline cmdlet. 
+ - Get-CQDUserReport cmdlet to retrieve call record for a single user (CONF & P2P).
+ - Get-CQDConferenceReport cmdlet to retrieve all the call records inside a meeting (CONF)
+ - Get-CQDSubnetsReport cmdlet to retrieve all the call records of calls made inside a subnet.
+ - if you are already authenticated, you can use the existing login and avoid authenticating with MFA again 
+
+- The modify the module and colaborate please go to the Github repository in the below link:
+https://github.com/lukaneco/MSTeamsCQD
+'@
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '3.0'
     
@@ -77,16 +92,16 @@
     # NestedModules = @()
     
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport = 'Get-CQDData','Get-CQDDimensions','Get-CQDMeasures','Get-CQDMeasures','Connect-CqdOnline','Get-CQDUserReport','Get-CQDConferenceReport','Get-CQDSubnetsReport'
+    FunctionsToExport = 'Get-CQDData', 'Get-CQDDimensions', 'Get-CQDMeasures', 'Get-CQDMeasures', 'Connect-CqdOnline', 'Get-CQDUserReport', 'Get-CQDConferenceReport', 'Get-CQDSubnetsReport'
     
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-    CmdletsToExport = '*'
+    CmdletsToExport   = '*'
     
     # Variables to export from this module
     VariablesToExport = '*'
     
     # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-    AliasesToExport = '*'
+    AliasesToExport   = '*'
     
     # DSC resources to export from this module
     # DscResourcesToExport = @()
@@ -98,34 +113,36 @@
     # FileList = @()
     
     # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
-    PrivateData = @{
+    PrivateData       = @{
     
         PSData = @{
     
             # Tags applied to this module. These help with module discovery in online galleries.
-             Tags = @("CQD","CQDPowerShell","Teams","SFB")
+            Tags         = @("CQD", "CQDPowerShell", "Teams", "SFB")
     
             # A URL to the license for this module.
             # LicenseUri = ''
     
             # A URL to the main website for this project.
-            # ProjectUri = ''
-    
+            ProjectUri   = 'https://github.com/lukaneco/MSTeamsCQD'
+            
             # A URL to an icon representing this module.
             # IconUri = ''
     
             # ReleaseNotes of this module
-            ReleaseNotes = '1.2.1 now adds CQD Query templates and new commands like Get-CQDUserReport,Get-CQDConferenceReport and fix the Get-CQDSubnetsReport command.'
-    
+            ReleaseNotes = @'
+ **1.2.1** (The project - MSTeamsCQD contains changes till this release)
+- Releases Get-CQDUserReport cmdlet.
+- Releases Get-CQDConferenceReport cmdlet.
+- Releases Get-CQDSubnetsReport cmdlet.
+'@
         } # End of PSData hashtable
+    } # End of PSData hashtable
     
-    } # End of PrivateData hashtable
+} # End of PrivateData hashtable
     
-    # HelpInfo URI of this module
-    # HelpInfoURI = ''
+# HelpInfo URI of this module
+# HelpInfoURI = ''
     
-    # Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
-    # DefaultCommandPrefix = ''
-    
-    }
-    
+# Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
+# DefaultCommandPrefix = 'Get-CQD'
