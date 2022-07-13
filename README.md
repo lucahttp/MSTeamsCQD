@@ -13,7 +13,7 @@ Install-Module MSTeamsCQD
 or
 
 ```PowerShell
-Install-Module MSTeamsCQD -Scope CurrentUser -Force -RequiredVersion 1.2.0
+Install-Module MSTeamsCQD -Scope CurrentUser -Force -RequiredVersion 1.2.4
 ```
 
 ## Examples
